@@ -11,7 +11,7 @@ public abstract class AbstractPlayer implements Player {
    * This player's board
    */
 
-  protected final Board board;
+  protected Board board;
 
   /**
    * The opponent's board
@@ -24,6 +24,10 @@ public abstract class AbstractPlayer implements Player {
   protected AbstractPlayer(Board board) {
     this.board = board;
     this.shotBoard = new OpponentBoard();
+  }
+
+  protected AbstractPlayer() {
+
   }
 
   /**

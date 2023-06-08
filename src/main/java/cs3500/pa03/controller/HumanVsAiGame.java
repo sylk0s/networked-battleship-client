@@ -16,7 +16,7 @@ import java.util.Random;
  * Represents a game of battleship
  */
 public class HumanVsAiGame implements Game {
-  private final HumanPlayer human;
+  private final Player human;
   private final Player ai;
 
   private final UiController ui;

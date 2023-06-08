@@ -19,7 +19,23 @@ public class Driver {
    */
   public static void main(String[] args) {
     Ui ui = new Cli(new InputStreamReader(System.in), new PrintStream(System.out));
-    Game game = new HumanVsAiGame(ui, new Random());
+
+    Game game = switch (args.length) {
+
+      // PA03 Like gameplay, Human v AI
+      case 0 -> new HumanVsAiGame(ui, new Random());
+
+      // PA04 Like gameplay, Server v AI
+      case 2 -> {
+        String hostname = args[1];
+        int port = Integer.parseInt(args[0]);
+
+        yield new RemoteVsAiGame(hostname, port, ui, new Random());
+      }
+
+      default -> throw new IllegalArgumentException("Incorrect number of arguments!");
+    };
+
     game.run();
   }
 }

@@ -23,6 +23,13 @@ public class HumanPlayer extends AbstractPlayer {
   }
 
   /**
+   * Default constructor for now
+   */
+  public HumanPlayer(UiController ui) {
+    this.ui = ui;
+  }
+
+  /**
    * Get the player's name.
    *
    * @return the player's name
@@ -44,6 +51,7 @@ public class HumanPlayer extends AbstractPlayer {
    */
   @Override
   public List<Ship> setup(int width, int height, Map<ShipType, Integer> specifications) {
+    this.board = new Board(width, height, specifications);
     return this.sharedSetup(width, height);
   }
 
