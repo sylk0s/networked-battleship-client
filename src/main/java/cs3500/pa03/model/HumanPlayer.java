@@ -3,7 +3,6 @@ package cs3500.pa03.model;
 import cs3500.pa03.controller.UiController;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Represents a real life human who is playing the game through some Ui
@@ -37,22 +36,6 @@ public class HumanPlayer extends AbstractPlayer {
   @Override
   public String name() {
     return "A real life human (woah)";
-  }
-
-  /**
-   * Given the specifications for a BattleSalvo board, return a list of ships with their locations
-   * on the board.
-   *
-   * @param height         the height of the board, range: [6, 15] inclusive
-   * @param width          the width of the board, range: [6, 15] inclusive
-   * @param specifications a map of ship type to the number of occurrences each ship should
-   *                       appear on the board
-   * @return the placements of each ship on the board
-   */
-  @Override
-  public List<Ship> setup(int width, int height, Map<ShipType, Integer> specifications) {
-    this.board = new Board(width, height, specifications);
-    return this.sharedSetup(width, height);
   }
 
   /**

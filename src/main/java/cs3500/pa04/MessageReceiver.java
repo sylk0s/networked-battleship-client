@@ -19,6 +19,7 @@ public class MessageReceiver {
 
   MessageReceiver(Player player) {
     this.mapper = new ObjectMapper();
+    this.player = player;
   }
 
   public JsonNode receiveMessage(MessageJson message) throws JsonProcessingException {

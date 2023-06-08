@@ -36,12 +36,16 @@ public class ProxyController {
 
   public void run() {
     try {
+      System.out.println("in run");
       JsonParser parser = this.mapper.getFactory().createParser(this.in);
 
       while (!this.server.isClosed()) {
+        System.out.println("awaiting next message...");
         MessageJson message = parser.readValueAs(MessageJson.class);
-
-        this.sendMessage(this.recv.receiveMessage(message));
+        System.out.println("recv msg: " + message.toString());
+        JsonNode response = this.recv.receiveMessage(message);
+        System.out.println("response: " + response.toString());
+        this.sendMessage(response);
       }
     } catch (IOException e) {
       // Disconnected from server or parsing exception
@@ -51,6 +55,6 @@ public class ProxyController {
 
 
   public void sendMessage(JsonNode message) {
-    this.out.append(message.asText()).append("\n");
+    this.out.println(message);
   }
 }

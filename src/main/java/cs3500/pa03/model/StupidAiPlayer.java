@@ -32,6 +32,15 @@ public class StupidAiPlayer extends AbstractPlayer {
     this(board, new Random());
   }
 
+  public StupidAiPlayer(Random random) {
+    super();
+    this.random = random;
+  }
+
+  public StupidAiPlayer() {
+    this(new Random());
+  }
+
   /**
    * Get the player's name.
    *
@@ -54,7 +63,7 @@ public class StupidAiPlayer extends AbstractPlayer {
    */
   @Override
   public List<Ship> setup(int width, int height, Map<ShipType, Integer> specifications) {
-    List<Ship> result = this.sharedSetup(width, height);
+    List<Ship> result = super.setup(width, height, specifications);
     this.possibleShots = this.board.coordsOnBoard();
     return result;
   }
@@ -86,6 +95,6 @@ public class StupidAiPlayer extends AbstractPlayer {
    */
   @Override
   public void endGame(GameResult result, String reason) {
-
+    System.out.println(result + " " + reason);
   }
 }

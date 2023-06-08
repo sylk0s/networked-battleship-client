@@ -27,8 +27,8 @@ public class Driver {
 
       // PA04 Like gameplay, Server v AI
       case 2 -> {
-        String hostname = args[1];
-        int port = Integer.parseInt(args[0]);
+        String hostname = args[0];
+        int port = Integer.parseInt(args[1]);
 
         yield new RemoteVsAiGame(hostname, port, ui, new Random());
       }

@@ -2,6 +2,7 @@ package cs3500.pa03.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Abstraction for the player to contain some common implementations and state
@@ -27,7 +28,7 @@ public abstract class AbstractPlayer implements Player {
   }
 
   protected AbstractPlayer() {
-
+    this.shotBoard = new OpponentBoard();
   }
 
   /**
@@ -38,7 +39,9 @@ public abstract class AbstractPlayer implements Player {
    * @param width          the width of the board, range: [6, 15] inclusive
    * @return the placements of each ship on the board
    */
-  public List<Ship> sharedSetup(int width, int height) {
+  @Override
+  public List<Ship> setup(int width, int height, Map<ShipType, Integer> map) {
+    this.board = new Board(width, height, map);
     this.shotBoard = new OpponentBoard(width, height);
     return this.board.getShips();
   }
