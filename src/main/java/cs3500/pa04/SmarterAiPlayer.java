@@ -9,6 +9,9 @@ import cs3500.pa03.model.ShipType;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A smarter AI player
+ */
 public class SmarterAiPlayer extends AbstractPlayer {
 
   SmarterAiPlayer(Board board) {

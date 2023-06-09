@@ -12,16 +12,38 @@ import cs3500.pa04.json.MessageJson;
 import cs3500.pa04.json.SetupRequestMessage;
 import cs3500.pa04.json.Volley;
 
+/**
+ * A receiver that determines what to do incoming messages
+ */
 public class MessageReceiver {
 
+  /**
+   * Object mapper for converting to and from json
+   */
   ObjectMapper mapper;
+
+  /**
+   * The player on this end of the game
+   */
   Player player;
 
+  /**
+   * Constructor
+   *
+   * @param player The player to notify about incoming messages
+   */
   MessageReceiver(Player player) {
     this.mapper = new ObjectMapper();
     this.player = player;
   }
 
+  /**
+   * Receives the message from the server
+   *
+   * @param message The message that was received
+   * @return The resulting response json
+   * @throws JsonProcessingException On failing to process the args
+   */
   public JsonNode receiveMessage(MessageJson message) throws JsonProcessingException {
     return switch (message.methodName()) {
       case "join" -> this.handleJoin();
@@ -34,6 +56,11 @@ public class MessageReceiver {
     };
   }
 
+  /**
+   * Handler for a join message
+   *
+   * @return The join response
+   */
   private JsonNode handleJoin() {
     JoinMessage joinArgs = new JoinMessage("aaa", GameType.SINGLE);
 
@@ -41,6 +68,13 @@ public class MessageReceiver {
     return this.serializeRecord(new MessageJson("join", args));
   }
 
+  /**
+   * Handler for the setup message
+   *
+   * @param arguments The setup arguments
+   * @return The setup response
+   * @throws JsonProcessingException Failing to parse the json arguments
+   */
   private JsonNode handleSetup(JsonNode arguments) throws JsonProcessingException {
     SetupRequestMessage setup = this.mapper.treeToValue(arguments, SetupRequestMessage.class);
 
@@ -50,6 +84,11 @@ public class MessageReceiver {
     return this.serializeRecord(new MessageJson("setup", args));
   }
 
+  /**
+   * Handler for take shots message
+   *
+   * @return The take-shots response
+   */
   private JsonNode handleTakeShots() {
     Volley coords = new Volley(this.player.takeShots());
 
@@ -57,6 +96,12 @@ public class MessageReceiver {
     return this.serializeRecord(new MessageJson("take-shots", args));
   }
 
+  /**
+   * Handler for report damage
+   *
+   * @param arguments The args to report damage
+   * @return The report-damage response
+   */
   private JsonNode handleReportDamage(JsonNode arguments) {
     Volley coords = this.mapper.convertValue(arguments, Volley.class);
     Volley result = new Volley(this.player.reportDamage(coords.coordinates()));
@@ -65,6 +110,12 @@ public class MessageReceiver {
     return this.serializeRecord(new MessageJson("report-damage", args));
   }
 
+  /**
+   * Handler to successful hits
+   *
+   * @param arguments The args to successful hits
+   * @return The successful-hits response
+   */
   private JsonNode handleSuccessfulHits(JsonNode arguments) {
     Volley coords = this.mapper.convertValue(arguments, Volley.class);
     this.player.successfulHits(coords.coordinates());
@@ -73,6 +124,13 @@ public class MessageReceiver {
         new ObjectMapper().getNodeFactory().missingNode()));
   }
 
+  /**
+   * Handler for the end of the game
+   *
+   * @param arguments The args to end game
+   * @return The response for the end of the game
+   * @throws JsonProcessingException Failure to parse the json
+   */
   private JsonNode handleEndGame(JsonNode arguments) throws JsonProcessingException {
     EndGameRequestMessage endgame = this.mapper.treeToValue(arguments, EndGameRequestMessage.class);
     this.player.endGame(endgame.result(), endgame.reason());

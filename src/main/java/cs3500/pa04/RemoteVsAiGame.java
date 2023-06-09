@@ -8,12 +8,29 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Random;
 
+/**
+ * A Game where an AI player plays against a remote player
+ */
 public class RemoteVsAiGame implements Game {
 
+  /**
+   * The controller for this game
+   */
   ProxyController controller;
 
+  /**
+   * The local player in this game
+   */
   Player player;
 
+  /**
+   * Constructor for the game
+   *
+   * @param hostname The hostname for this socket
+   * @param port The port for this socket
+   * @param ui The UI for this game
+   * @param random The random seed for this game
+   */
   RemoteVsAiGame(String hostname, int port, Ui ui, Random random) {
     try {
       Socket socket = new Socket(hostname, port);
@@ -24,6 +41,9 @@ public class RemoteVsAiGame implements Game {
     }
   }
 
+  /**
+   * Runs this game
+   */
   @Override
   public void run() {
     this.controller.run();
