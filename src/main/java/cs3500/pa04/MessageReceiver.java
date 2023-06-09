@@ -44,7 +44,7 @@ public class MessageReceiver {
   private JsonNode handleSetup(JsonNode arguments) throws JsonProcessingException {
     SetupRequestMessage setup = this.mapper.treeToValue(arguments, SetupRequestMessage.class);
 
-    Fleet ships = new Fleet(this.player.setup(setup.height(), setup.width(), setup.fleetSpec()));
+    Fleet ships = new Fleet(this.player.setup(setup.width(), setup.height(), setup.fleetSpec()));
 
     JsonNode args = this.serializeRecord(ships);
     return this.serializeRecord(new MessageJson("setup", args));
