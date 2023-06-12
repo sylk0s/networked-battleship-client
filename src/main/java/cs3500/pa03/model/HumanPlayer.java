@@ -25,15 +25,6 @@ public class HumanPlayer extends AbstractPlayer {
   }
 
   /**
-   * Default constructor for now
-   *
-   * @param ui the UI this player will use to interact with the player
-   */
-  public HumanPlayer(UiController ui) {
-    this.ui = ui;
-  }
-
-  /**
    * Get the player's name.
    *
    * @return the player's name
