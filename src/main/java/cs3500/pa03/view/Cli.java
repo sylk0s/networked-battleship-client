@@ -176,7 +176,7 @@ public class Cli implements Ui {
    * @param msg The message
    */
   @Override
-  public void displayEndMessage(String msg) {
+  public void displayMessage(String msg) {
     try {
       this.output.append(msg);
     } catch (IOException e) {

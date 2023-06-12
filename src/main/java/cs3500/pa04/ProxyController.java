@@ -64,6 +64,9 @@ public class ProxyController {
 
       while (!this.server.isClosed()) {
         MessageJson message = parser.readValueAs(MessageJson.class);
+
+        //System.out.println(message);
+
         JsonNode response = this.recv.receiveMessage(message);
         this.sendMessage(response);
       }

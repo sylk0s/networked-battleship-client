@@ -7,6 +7,8 @@ import cs3500.pa03.model.Coord;
 import cs3500.pa03.model.Player;
 import cs3500.pa03.model.ShipType;
 import cs3500.pa03.view.Cli;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +28,8 @@ class SmarterAiPlayerTest {
     map1.put(ShipType.BATTLESHIP, 2);
     map1.put(ShipType.DESTROYER, 2);
     map1.put(ShipType.SUBMARINE, 1);
-    player1 = new SmarterAiPlayer();
+    player1 = new SmarterAiPlayer(
+        new Cli(new InputStreamReader(System.in), new PrintStream(System.out)));
     player1.setup(6, 6, map1);
   }
 
@@ -47,7 +50,9 @@ class SmarterAiPlayerTest {
     map2.put(ShipType.BATTLESHIP, 3);
     map2.put(ShipType.DESTROYER, 2);
     map2.put(ShipType.SUBMARINE, 1);
-    Player player2 = new SmarterAiPlayer();
+    Player player2 = new SmarterAiPlayer(
+        new Cli(new InputStreamReader(System.in), new PrintStream(System.out))
+    );
     player2.setup(7, 8, map2);
     List<Coord> shots2 = player2.takeShots();
 

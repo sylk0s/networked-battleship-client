@@ -5,6 +5,7 @@ import cs3500.pa03.model.Coord;
 import cs3500.pa03.model.GameResult;
 import cs3500.pa03.model.Ship;
 import cs3500.pa03.model.ShipType;
+import cs3500.pa03.view.Ui;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,18 @@ public class SmarterAiPlayer extends AbstractPlayer {
    * The previous volley of shots
    */
   private List<Coord> prevVolley;
+
+  private final Ui ui;
+
+  /**
+   * Constructor
+   *
+   * @param ui the ui for this player
+   */
+  SmarterAiPlayer(Ui ui) {
+    super();
+    this.ui = ui;
+  }
 
 
   /**
@@ -88,6 +101,6 @@ public class SmarterAiPlayer extends AbstractPlayer {
    */
   @Override
   public void endGame(GameResult result, String reason) {
-    System.out.println(result + " " + reason);
+    this.ui.displayMessage(result + " " + reason);
   }
 }

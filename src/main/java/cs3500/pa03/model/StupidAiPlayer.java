@@ -44,19 +44,10 @@ public class StupidAiPlayer extends AbstractPlayer {
 
   /**
    * constructor
-   *
-   * @param random the random object used by this AI
-   */
-  public StupidAiPlayer(Random random) {
-    super();
-    this.random = random;
-  }
-
-  /**
-   * constructor
    */
   public StupidAiPlayer() {
-    this(new Random());
+    super();
+    this.random = new Random();
   }
 
   /**
@@ -131,6 +122,6 @@ public class StupidAiPlayer extends AbstractPlayer {
    */
   @Override
   public void endGame(GameResult result, String reason) {
-    System.out.println(result + " " + reason);
+    //System.out.println(result + " " + reason);
   }
 }

@@ -78,7 +78,7 @@ public class HumanVsAiGame implements Game {
    */
   @Override
   public void run() {
-    this.ui.displayEndMessage(this.runLoop());
+    this.ui.displayMessage(this.runLoop());
   }
 
   /**
@@ -94,12 +94,12 @@ public class HumanVsAiGame implements Game {
         this.ai.endGame(GameResult.TIE, "");
         return "The human and the AI tied!";
       } else if (this.humanShipCoords.size() == 0) {
-        this.human.endGame(GameResult.LOSS, "");
+        this.human.endGame(GameResult.LOSE, "");
         this.ai.endGame(GameResult.WIN, "");
         return "The human lost and the AI won.";
       } else if (this.aiShipCoords.size() == 0) {
         this.human.endGame(GameResult.WIN, "");
-        this.ai.endGame(GameResult.LOSS, "");
+        this.ai.endGame(GameResult.LOSE, "");
         return "The human won and the AI lost.";
       }
 
@@ -108,8 +108,8 @@ public class HumanVsAiGame implements Game {
       List<Coord> p2Shots = this.ai.takeShots();
 
       // removes any hit positions to check for win
-      this.humanShipCoords.removeIf(p1Shots::contains);
-      this.aiShipCoords.removeIf(p2Shots::contains);
+      this.humanShipCoords.removeIf(p2Shots::contains);
+      this.aiShipCoords.removeIf(p1Shots::contains);
 
       // reports damage to each other
       this.human.successfulHits(this.ai.reportDamage(p1Shots));

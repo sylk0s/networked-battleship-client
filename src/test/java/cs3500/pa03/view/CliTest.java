@@ -213,6 +213,6 @@ class CliTest {
         .displayBoard(new Board(0, 0, new ArrayList<>()), ""));
     assertDoesNotThrow(() -> new Cli(input, new MockOutput())
         .displayBoardNoFormat(new Board(0, 0, new ArrayList<>())));
-    assertDoesNotThrow(() -> new Cli(input, new MockOutput()).displayEndMessage(""));
+    assertDoesNotThrow(() -> new Cli(input, new MockOutput()).displayMessage(""));
   }
 }

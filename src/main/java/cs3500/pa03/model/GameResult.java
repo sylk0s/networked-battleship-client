@@ -11,7 +11,7 @@ public enum GameResult {
   /**
    * A lost game
    */
-  LOSS,
+  LOSE,
   /**
    * A tie game
    */

@@ -151,7 +151,7 @@ class UiControllerTest {
     Readable input = new StringReader("aaa");
     Appendable out = new StringBuilder();
     UiController cli = new UiController(new Cli(input, out));
-    cli.displayEndMessage("end message");
+    cli.displayMessage("end message");
     assertEquals(out.toString(), "end message");
   }
 }

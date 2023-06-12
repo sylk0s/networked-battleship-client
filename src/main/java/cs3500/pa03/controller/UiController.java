@@ -218,7 +218,7 @@ public class UiController {
    *
    * @param msg the message to display
    */
-  public void displayEndMessage(String msg) {
-    this.ui.displayEndMessage(msg);
+  public void displayMessage(String msg) {
+    this.ui.displayMessage(msg);
   }
 }

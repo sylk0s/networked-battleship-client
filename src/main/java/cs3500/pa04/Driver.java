@@ -4,6 +4,7 @@ import cs3500.pa03.controller.Game;
 import cs3500.pa03.controller.HumanVsAiGame;
 import cs3500.pa03.view.Cli;
 import cs3500.pa03.view.Ui;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Random;
@@ -20,22 +21,26 @@ public class Driver {
   public static void main(String[] args) {
     Ui ui = new Cli(new InputStreamReader(System.in), new PrintStream(System.out));
 
-    Game game = switch (args.length) {
+    try {
+      Game game = switch (args.length) {
 
-      // PA03 Like gameplay, Human v AI
-      case 0 -> new HumanVsAiGame(ui, new Random(42));
+        // PA03 Like gameplay, Human v AI
+        case 0 -> new HumanVsAiGame(ui, new Random());
 
-      // PA04 Like gameplay, Server v AI
-      case 2 -> {
-        String hostname = args[0];
-        int port = Integer.parseInt(args[1]);
+        // PA04 Like gameplay, Server v AI
+        case 2 -> {
+          String hostname = args[0];
+          int port = Integer.parseInt(args[1]);
 
-        yield new RemoteVsAiGame(hostname, port, ui, new Random());
-      }
+          yield new RemoteVsAiGame(hostname, port, ui);
+        }
 
-      default -> throw new IllegalArgumentException("Incorrect number of arguments!");
-    };
+        default -> throw new IllegalArgumentException("Incorrect number of arguments!");
+      };
 
-    game.run();
+      game.run();
+    } catch (IOException e) {
+      ui.displayMessage("Failed to connect to the port\n");
+    }
   }
 }

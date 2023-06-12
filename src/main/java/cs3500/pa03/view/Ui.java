@@ -52,5 +52,5 @@ public interface Ui {
    *
    * @param msg The message
    */
-  void displayEndMessage(String msg);
+  void displayMessage(String msg);
 }

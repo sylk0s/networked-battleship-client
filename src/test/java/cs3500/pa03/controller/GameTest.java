@@ -177,7 +177,7 @@ class GameTest {
         - * * * * -\s
         Please enter 1 shots:
         ------------------------------------------------------------------
-        The human won and the AI lost.""";
+        The human and the AI tied!""";
 
     assertEquals(result, output.toString().replaceAll("\u001B\\[[;\\d]*m", ""));
   }
@@ -399,7 +399,7 @@ class GameTest {
         - - - * * *\s
         Please enter 3 shots:
         ------------------------------------------------------------------
-        The human lost and the AI won.""";
+        The human won and the AI lost.""";
 
     assertEquals(result, output.toString().replaceAll("\u001B\\[[;\\d]*m", ""));
   }
