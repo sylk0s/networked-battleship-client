@@ -93,6 +93,8 @@ public class ProbabilityBoard extends DisplayableBoard {
     // sets the spot on the board as 0
     this.board[c.getX()][c.getY()] = 0;
 
+    this.shotsMissed.add(c);
+
     // readjusts all positions around it to reflect the miss
     this.updateBoard();
   }
@@ -127,7 +129,7 @@ public class ProbabilityBoard extends DisplayableBoard {
 
     this.shots.addAll(result);
 
-    System.out.println(result);
+    //System.out.println(result);
     return result;
   }
 
@@ -197,8 +199,12 @@ public class ProbabilityBoard extends DisplayableBoard {
    */
   @Override
   protected CellType getCellType(Coord c) {
-    return null;
-    // todo
-    //board[c.getX()][c.getY()];
+    if (this.shotsHit.contains(c)) {
+      return CellType.HIT;
+    } else if (this.shotsMissed.contains(c)) {
+      return CellType.MISS;
+    } else {
+      return CellType.EMPTY;
+    }
   }
 }

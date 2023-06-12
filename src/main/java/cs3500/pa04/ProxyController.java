@@ -46,15 +46,11 @@ public class ProxyController {
    * @param server The socket this controller should connect to
    * @param player The local player
    */
-  public ProxyController(Socket server, Player player) {
+  public ProxyController(Socket server, Player player) throws IOException {
     this.server = server;
     this.recv = new MessageReceiver(player);
-    try {
-      this.in = this.server.getInputStream();
-      this.out = new PrintStream(this.server.getOutputStream());
-    } catch (IOException e) {
-      throw new RuntimeException("help");
-    }
+    this.in = this.server.getInputStream();
+    this.out = new PrintStream(this.server.getOutputStream());
     this.mapper = new ObjectMapper();
   }
 
@@ -63,15 +59,11 @@ public class ProxyController {
    */
   public void run() {
     try {
-      System.out.println("in run");
       JsonParser parser = this.mapper.getFactory().createParser(this.in);
 
       while (!this.server.isClosed()) {
-        System.out.println("awaiting next message...");
         MessageJson message = parser.readValueAs(MessageJson.class);
-        System.out.println("recv msg: " + message.toString());
         JsonNode response = this.recv.receiveMessage(message);
-        System.out.println("response: " + response.toString());
         this.sendMessage(response);
       }
     } catch (IOException e) {

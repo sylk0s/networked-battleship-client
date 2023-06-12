@@ -5,22 +5,32 @@ import static org.junit.jupiter.api.Assertions.*;
 import cs3500.pa03.model.Coord;
 import cs3500.pa03.model.Player;
 import cs3500.pa03.model.ShipType;
+import cs3500.pa03.view.Cli;
+import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class SmarterAiPlayerTest {
-  @Test
-  public void testTakeShots() {
+  Map<ShipType, Integer> map1;
+  Player player1;
 
-    Map<ShipType, Integer> map1 = new HashMap<>();
+  @BeforeEach
+  void setup() {
+    map1 = new HashMap<>();
     map1.put(ShipType.CARRIER, 1);
     map1.put(ShipType.BATTLESHIP, 2);
     map1.put(ShipType.DESTROYER, 2);
     map1.put(ShipType.SUBMARINE, 1);
-    Player player1 = new SmarterAiPlayer();
+    player1 = new SmarterAiPlayer();
     player1.setup(6, 6, map1);
+  }
+
+  @Test
+  public void testTakeShots() {
     List<Coord> shots1 = player1.takeShots();
 
     // Took the right amount of shots
@@ -47,5 +57,64 @@ class SmarterAiPlayerTest {
     for (Coord shot : shots2) {
       assertFalse(shot.outOfBound(new Coord(0, 0), new Coord(7, 8)));
     }
+  }
+
+  @Test
+  void testMarkingShots() {
+    List<Coord> shots1 = player1.takeShots();
+
+    // simulate no shots hitting
+    player1.successfulHits(new ArrayList<>());
+    List<Coord> shots2 = player1.takeShots();
+
+    for (Coord c : shots2) {
+      assertFalse(shots1.contains(c));
+    }
+
+    shots1.addAll(shots2);
+
+    List<Coord> shots3 = player1.takeShots();
+    // simulate all shots hitting
+    player1.successfulHits(shots3);
+
+    for (Coord c : shots3) {
+      assertFalse(shots1.contains(c));
+    }
+  }
+
+  @Test
+  void testToStringAndDisplay() {
+    // shots are deterministic for the first run since they pick the most probable locations
+    assertEquals(this.player1.takeShots().toString(),
+        "[{ 2, 2 }, { 2, 3 }, { 3, 2 }, { 3, 3 }, { 1, 2 }, { 1, 3 }]");
+
+    ProbabilityBoard board = new ProbabilityBoard(6, 6, map1);
+
+    StringBuilder sb = new StringBuilder();
+    Cli cli = new Cli(new StringReader(""), sb);
+    cli.displayBoardNoFormat(board);
+    assertEquals(sb.toString(), """
+        . . . . . .\s
+        . . . . . .\s
+        . . . . . .\s
+        . . . . . .\s
+        . . . . . .\s
+        . . . . . .\s
+        """);
+
+    board.markAsMiss(new Coord(0, 0));
+    board.markAsHit(new Coord(1, 1));
+
+    StringBuilder sb2 = new StringBuilder();
+    Cli cli2 = new Cli(new StringReader(""), sb2);
+    cli2.displayBoardNoFormat(board);
+    assertEquals(sb2.toString(), """
+        - . . . . .\s
+        . * . . . .\s
+        . . . . . .\s
+        . . . . . .\s
+        . . . . . .\s
+        . . . . . .\s
+        """);
   }
 }
