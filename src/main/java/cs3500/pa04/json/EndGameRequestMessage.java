@@ -11,6 +11,5 @@ import cs3500.pa03.model.GameResult;
  */
 public record EndGameRequestMessage(
     @JsonProperty("result") GameResult result,
-    @JsonProperty("reason") String reason
-    ) {
+    @JsonProperty("reason") String reason) {
 }

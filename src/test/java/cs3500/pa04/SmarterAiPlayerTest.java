@@ -1,6 +1,7 @@
 package cs3500.pa04;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import cs3500.pa03.model.Coord;
 import cs3500.pa03.model.Player;

@@ -79,7 +79,8 @@ public class StupidAiPlayer extends AbstractPlayer {
    * @return the placements of each ship on the board
    */
   @Override
-  public List<Ship> setup(int width, int height, Map<ShipType, Integer> specifications, Random random) {
+  public List<Ship> setup(int width, int height,
+                          Map<ShipType, Integer> specifications, Random random) {
     List<Ship> result = super.setup(width, height, specifications, random);
     this.possibleShots = this.board.coordsOnBoard();
     return result;

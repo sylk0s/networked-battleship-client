@@ -58,7 +58,7 @@ public class SmarterAiPlayer extends AbstractPlayer {
    */
   @Override
   public List<Coord> takeShots() {
-    List<Coord> coords = this.probBoard.getNMostProbableLocations(this.board.getShips().size());
+    List<Coord> coords = this.probBoard.getMostProbableLocations(this.board.getShips().size());
     this.prevVolley = coords;
     return coords;
   }

@@ -33,6 +33,13 @@ public class Ship {
     this.hitPositions = new ArrayList<>();
   }
 
+  /**
+   * Create a ship from a json
+   *
+   * @param len the length of the ship
+   * @param or the orientation of the ship
+   * @param c the origin coordinate of this ship
+   */
   @JsonCreator
   public Ship(@JsonProperty("length") int len,
               @JsonProperty("direction") Orientation or,
@@ -100,11 +107,19 @@ public class Ship {
     };
   }
 
+  /**
+   * Get the length of this ship
+   */
   @JsonGetter("length")
   public int length() {
     return this.positions.size();
   }
 
+  /**
+   * Get the direction of this ship
+   *
+   * @return the direction of this ship
+   */
   @JsonGetter("direction")
   public Orientation direction() {
     if (mapSame(this.positions, Coord::getX)) {
@@ -116,6 +131,11 @@ public class Ship {
     }
   }
 
+  /**
+   * Get the origin coord of this ship
+   *
+   * @return the origin coord of this ship
+   */
   @JsonGetter("coord")
   public Coord leastCoord() {
     return switch (this.direction()) {

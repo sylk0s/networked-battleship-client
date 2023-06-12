@@ -105,7 +105,7 @@ public class ProbabilityBoard extends DisplayableBoard {
    * @param n the number of coords to get
    * @return The list of probable coords
    */
-  public ArrayList<Coord> getNMostProbableLocations(int n) {
+  public ArrayList<Coord> getMostProbableLocations(int n) {
     ArrayList<CoordProbPair> pairs = new ArrayList<>();
 
     // creates the coord prob pair
@@ -188,7 +188,7 @@ public class ProbabilityBoard extends DisplayableBoard {
   private boolean tryPlace(int length, Coord c, Coord dir) {
     return !this.shotsMissed.contains(c)
         && (length <= 1 || tryPlace(length - 1, c.coordIn(dir), dir))
-        && !c.outOfBound(new Coord(0,0), new Coord(this.width, this.height));
+        && !c.outOfBound(new Coord(0, 0), new Coord(this.width, this.height));
   }
 
   /**

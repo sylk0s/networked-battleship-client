@@ -73,7 +73,7 @@ class ShipTest {
     Ship ship2 = new Ship(coords1);
 
     assertEquals(ship2.direction(), Orientation.HORIZONTAL);
-    assertEquals(ship2.leastCoord(), new Coord(0,0));
+    assertEquals(ship2.leastCoord(), new Coord(0, 0));
 
     ArrayList<Coord> coords2 = new ArrayList<>();
     coords2.add(new Coord(0, 0));
@@ -81,7 +81,7 @@ class ShipTest {
     Ship ship3 = new Ship(coords2);
 
     assertEquals(ship3.direction(), Orientation.VERTICAL);
-    assertEquals(ship3.leastCoord(), new Coord(0,0));
+    assertEquals(ship3.leastCoord(), new Coord(0, 0));
 
     ArrayList<Coord> coords3 = new ArrayList<>();
     coords3.add(new Coord(0, 0));
@@ -90,7 +90,7 @@ class ShipTest {
 
     assertThrows(IllegalStateException.class, ship4::direction);
 
-    assertEquals(new Ship(2, Orientation.VERTICAL, new Coord(0,0)),
+    assertEquals(new Ship(2, Orientation.VERTICAL, new Coord(0, 0)),
         ship3);
 
     assertNotEquals(ship, 0);

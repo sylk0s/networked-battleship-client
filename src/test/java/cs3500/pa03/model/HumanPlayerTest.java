@@ -37,12 +37,12 @@ class HumanPlayerTest {
 
   @Test
   public void testShooting() {
-    HumanPlayer human = new HumanPlayer(board, ui);
     Map<ShipType, Integer> map1 = new HashMap<>();
     map1.put(ShipType.CARRIER, 0);
     map1.put(ShipType.BATTLESHIP, 0);
     map1.put(ShipType.DESTROYER, 0);
     map1.put(ShipType.SUBMARINE, 1);
+    HumanPlayer human = new HumanPlayer(board, ui);
     human.setup(3, 3, map1);
 
     List<Coord> result = new ArrayList<>();

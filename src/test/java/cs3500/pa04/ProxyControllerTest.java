@@ -1,6 +1,6 @@
 package cs3500.pa04;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import cs3500.pa03.model.StupidAiPlayer;
 import java.io.IOException;

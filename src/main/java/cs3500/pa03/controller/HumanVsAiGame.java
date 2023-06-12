@@ -42,11 +42,11 @@ public class HumanVsAiGame implements Game {
     this.human = new HumanPlayer(new Board(coord.getX(), coord.getY(), ships), this.ui);
     this.ai = new StupidAiPlayer(new Board(coord.getX(), coord.getY(), ships), random);
 
-    List<Ship> humShips = this.human.setup(coord.getX(), coord.getY(), ships, random);
-    List<Ship> aiShips = this.ai.setup(coord.getX(), coord.getY(), ships, random);
-
     this.humanShipCoords = new ArrayList<>();
     this.aiShipCoords = new ArrayList<>();
+
+    List<Ship> humShips = this.human.setup(coord.getX(), coord.getY(), ships, random);
+    List<Ship> aiShips = this.ai.setup(coord.getX(), coord.getY(), ships, random);
 
     humShips.forEach((ship) -> this.humanShipCoords.addAll(ship.coords()));
     aiShips.forEach((ship) -> this.aiShipCoords.addAll(ship.coords()));

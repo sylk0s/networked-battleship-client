@@ -14,7 +14,6 @@ import java.util.Map;
 public record SetupRequestMessage(
     @JsonProperty("width") int width,
     @JsonProperty("height") int height,
-    @JsonProperty("fleet-spec") Map<ShipType, Integer> fleetSpec
-    ) {
+    @JsonProperty("fleet-spec") Map<ShipType, Integer> fleetSpec) {
 
 }

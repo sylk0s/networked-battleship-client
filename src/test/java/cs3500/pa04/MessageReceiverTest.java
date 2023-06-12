@@ -1,6 +1,7 @@
 package cs3500.pa04;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -29,12 +30,12 @@ class MessageReceiverTest {
 
   @BeforeEach
   void setup() {
-    Player p = new StupidAiPlayer();
     Map<ShipType, Integer> map1 = new HashMap<>();
     map1.put(ShipType.CARRIER, 1);
     map1.put(ShipType.BATTLESHIP, 2);
     map1.put(ShipType.DESTROYER, 2);
     map1.put(ShipType.SUBMARINE, 1);
+    Player p = new StupidAiPlayer();
     p.setup(6, 7, map1);
     this.recv = new MessageReceiver(p);
     this.mapper = new ObjectMapper();
@@ -130,12 +131,6 @@ class MessageReceiverTest {
       fail();
     }
   }
-
-//  @Test
-//  void throwsUnserializable() {
-//    assertThrows(
-//        () -> this.recv.receiveMessage(new NotJson("aaa"));
-//  }
 
   /**
    * Converts a given record object to a JsonNode.
