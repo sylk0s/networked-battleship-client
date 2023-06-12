@@ -23,7 +23,7 @@ public class Driver {
     Game game = switch (args.length) {
 
       // PA03 Like gameplay, Human v AI
-      case 0 -> new HumanVsAiGame(ui, new Random());
+      case 0 -> new HumanVsAiGame(ui, new Random(42));
 
       // PA04 Like gameplay, Server v AI
       case 2 -> {

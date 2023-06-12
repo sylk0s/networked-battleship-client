@@ -3,6 +3,7 @@ package cs3500.pa03.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Abstraction for the player to contain some common implementations and state
@@ -42,6 +43,20 @@ public abstract class AbstractPlayer implements Player {
   @Override
   public List<Ship> setup(int width, int height, Map<ShipType, Integer> map) {
     this.board = new Board(width, height, map);
+    this.shotBoard = new OpponentBoard(width, height);
+    return this.board.getShips();
+  }
+
+  /**
+   * Given the specifications for a BattleSalvo board, return a list of ships with their locations
+   * on the board.
+   *
+   * @param height         the height of the board, range: [6, 15] inclusive
+   * @param width          the width of the board, range: [6, 15] inclusive
+   * @return the placements of each ship on the board
+   */
+  public List<Ship> setup(int width, int height, Map<ShipType, Integer> map, Random random) {
+    this.board = new Board(width, height, map, random);
     this.shotBoard = new OpponentBoard(width, height);
     return this.board.getShips();
   }

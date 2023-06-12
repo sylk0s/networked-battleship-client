@@ -28,15 +28,17 @@ class AbstractPlayerTest {
 
   @Test
   public void testSetup() {
-    /*
     // Opponent board has no spaces so wont take shots
     assertEquals(this.player.takeShots(), new ArrayList<>());
 
-    // dummy map, not actually used...
-    Map<ShipType, Integer> map = new HashMap<>();
+    Map<ShipType, Integer> map1 = new HashMap<>();
+    map1.put(ShipType.CARRIER, 0);
+    map1.put(ShipType.BATTLESHIP, 0);
+    map1.put(ShipType.DESTROYER, 0);
+    map1.put(ShipType.SUBMARINE, 1);
 
     // Has one ship
-    assertEquals(this.player.setup(3, 3, map).size(), 1);
+    assertEquals(this.player.setup(3, 3, map1).size(), 1);
 
     // Ship takes a shot
     assertEquals(this.player.takeShots().size(), 1);
@@ -48,8 +50,6 @@ class AbstractPlayerTest {
 
     // No spaces left on board, no more shots
     assertEquals(this.player.takeShots().size(), 0);
-
-     */
   }
 
   @Test

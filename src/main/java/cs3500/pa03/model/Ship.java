@@ -137,4 +137,8 @@ public class Ship {
     return that instanceof Ship
         && ((Ship) that).positions.equals(this.positions);
   }
+
+  public List<Coord> coords() {
+    return this.positions;
+  }
 }

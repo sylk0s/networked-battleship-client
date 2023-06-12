@@ -69,6 +69,23 @@ public class StupidAiPlayer extends AbstractPlayer {
   }
 
   /**
+   * Given the specifications for a BattleSalvo board, return a list of ships with their locations
+   * on the board.
+   *
+   * @param height         the height of the board, range: [6, 15] inclusive
+   * @param width          the width of the board, range: [6, 15] inclusive
+   * @param specifications a map of ship type to the number of occurrences each ship should
+   *                       appear on the board
+   * @return the placements of each ship on the board
+   */
+  @Override
+  public List<Ship> setup(int width, int height, Map<ShipType, Integer> specifications, Random random) {
+    List<Ship> result = super.setup(width, height, specifications, random);
+    this.possibleShots = this.board.coordsOnBoard();
+    return result;
+  }
+
+  /**
    * Returns this player's shots on the opponent's board. The number of shots returned should
    * equal the number of ships on this player's board that have not sunk.
    *

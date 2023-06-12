@@ -8,6 +8,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,9 +37,13 @@ class HumanPlayerTest {
 
   @Test
   public void testShooting() {
-    /*
     HumanPlayer human = new HumanPlayer(board, ui);
-    human.setup(3, 3, new HashMap<>());
+    Map<ShipType, Integer> map1 = new HashMap<>();
+    map1.put(ShipType.CARRIER, 0);
+    map1.put(ShipType.BATTLESHIP, 0);
+    map1.put(ShipType.DESTROYER, 0);
+    map1.put(ShipType.SUBMARINE, 1);
+    human.setup(3, 3, map1);
 
     List<Coord> result = new ArrayList<>();
 
@@ -53,6 +58,5 @@ class HumanPlayerTest {
     result.clear();
     result.add(new Coord(2, 0));
     assertEquals(human.takeShots(), result);
-    */
   }
 }

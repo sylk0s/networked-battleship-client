@@ -9,7 +9,6 @@ import java.util.Random;
 import org.junit.jupiter.api.Test;
 
 class GameTest {
-  /*
   @Test
   public void testRun1() {
     Readable input = new StringReader(
@@ -178,7 +177,7 @@ class GameTest {
         - * * * * -\s
         Please enter 1 shots:
         ------------------------------------------------------------------
-        The human and the AI tied!""";
+        The human won and the AI lost.""";
 
     assertEquals(result, output.toString().replaceAll("\u001B\\[[;\\d]*m", ""));
   }
@@ -400,10 +399,8 @@ class GameTest {
         - - - * * *\s
         Please enter 3 shots:
         ------------------------------------------------------------------
-        The human won and the AI lost.""";
+        The human lost and the AI won.""";
 
     assertEquals(result, output.toString().replaceAll("\u001B\\[[;\\d]*m", ""));
   }
-
-   */
 }
