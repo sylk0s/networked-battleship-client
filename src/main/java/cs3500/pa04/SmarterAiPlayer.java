@@ -1,7 +1,6 @@
 package cs3500.pa04;
 
 import cs3500.pa03.model.AbstractPlayer;
-import cs3500.pa03.model.Board;
 import cs3500.pa03.model.Coord;
 import cs3500.pa03.model.GameResult;
 import cs3500.pa03.model.Ship;
@@ -14,9 +13,16 @@ import java.util.Map;
  */
 public class SmarterAiPlayer extends AbstractPlayer {
 
-  SmarterAiPlayer(Board board) {
-    super(board);
-  }
+  /**
+   * The probability board
+   */
+  private ProbabilityBoard probBoard;
+
+  /**
+   * The previous volley of shots
+   */
+  private List<Coord> prevVolley;
+
 
   /**
    * Get the player's name.
@@ -25,7 +31,7 @@ public class SmarterAiPlayer extends AbstractPlayer {
    */
   @Override
   public String name() {
-    return null;
+    return "smart ai";
   }
 
   /**
@@ -39,8 +45,9 @@ public class SmarterAiPlayer extends AbstractPlayer {
    * @return the placements of each ship on the board
    */
   @Override
-  public List<Ship> setup(int height, int width, Map<ShipType, Integer> specifications) {
-    return null;
+  public List<Ship> setup(int width, int height, Map<ShipType, Integer> specifications) {
+    this.probBoard = new ProbabilityBoard(width, height, specifications);
+    return super.setup(width, height, specifications);
   }
 
   /**
@@ -51,7 +58,25 @@ public class SmarterAiPlayer extends AbstractPlayer {
    */
   @Override
   public List<Coord> takeShots() {
-    return null;
+    List<Coord> coords = this.probBoard.getNMostProbableLocations(this.board.getShips().size());
+    this.prevVolley = coords;
+    return coords;
+  }
+
+  /**
+   * Marks all the hits on this player
+   *
+   * @param shotsThatHitOpponentShips the list of shots that successfully hit the opponent's ships
+   */
+  public void successfulHits(List<Coord> shotsThatHitOpponentShips) {
+    for (Coord c : prevVolley) {
+      if (shotsThatHitOpponentShips.contains(c)) {
+        this.probBoard.markAsHit(c);
+      } else {
+        this.probBoard.markAsMiss(c);
+      }
+    }
+    super.successfulHits(shotsThatHitOpponentShips);
   }
 
   /**
@@ -63,6 +88,6 @@ public class SmarterAiPlayer extends AbstractPlayer {
    */
   @Override
   public void endGame(GameResult result, String reason) {
-
+    System.out.println(result + " " + reason);
   }
 }

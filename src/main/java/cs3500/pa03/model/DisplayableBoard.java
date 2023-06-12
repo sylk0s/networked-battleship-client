@@ -33,7 +33,7 @@ public abstract class DisplayableBoard {
    * @param width The width of the board
    * @param height The height of the board
    */
-  DisplayableBoard(int width, int height) {
+  protected DisplayableBoard(int width, int height) {
     this.shotsHit = new ArrayList<>();
     this.shotsMissed = new ArrayList<>();
     this.width = width;
@@ -61,7 +61,7 @@ public abstract class DisplayableBoard {
    * @param c The position of the cell
    * @return The CellType of the cell
    */
-  abstract CellType getCellType(Coord c);
+  protected abstract CellType getCellType(Coord c);
 
   /**
    * Gets the height

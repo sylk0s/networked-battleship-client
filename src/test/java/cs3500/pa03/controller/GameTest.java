@@ -404,5 +404,6 @@ class GameTest {
 
     assertEquals(result, output.toString().replaceAll("\u001B\\[[;\\d]*m", ""));
   }
-  */
+
+   */
 }

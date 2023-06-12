@@ -94,4 +94,8 @@ public class Coord {
         || this.positionX >= max.positionX
         || this.positionX < min.positionX;
   }
+
+  public String toString() {
+    return "{ " + this.positionX + ", " + this.positionY + " }";
+  }
 }
