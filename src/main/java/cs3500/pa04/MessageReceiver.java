@@ -20,12 +20,12 @@ public class MessageReceiver {
   /**
    * Object mapper for converting to and from json
    */
-  ObjectMapper mapper;
+  private final ObjectMapper mapper;
 
   /**
    * The player on this end of the game
    */
-  Player player;
+  private final Player player;
 
   /**
    * Constructor

@@ -18,27 +18,27 @@ public class ProxyController {
   /**
    * The socket this game is connected to
    */
-  Socket server;
+  private final Socket server;
 
   /**
    * The input stream from this socket
    */
-  InputStream in;
+  private final InputStream in;
 
   /**
    * The output stream to the socket
    */
-  PrintStream out;
+  private final PrintStream out;
 
   /**
    * The mapper to map to and from json objects
    */
-  ObjectMapper mapper;
+  private final ObjectMapper mapper;
 
   /**
    * The receiver which dispatches on the messages and determines
    */
-  MessageReceiver recv;
+  private final MessageReceiver recv;
 
   /**
    * Constructor for the proxy controller
@@ -84,7 +84,7 @@ public class ProxyController {
    *
    * @param message The message to send
    */
-  public void sendMessage(JsonNode message) {
+  private void sendMessage(JsonNode message) {
     this.out.println(message);
   }
 }

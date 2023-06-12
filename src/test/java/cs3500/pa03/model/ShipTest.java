@@ -2,16 +2,18 @@ package cs3500.pa03.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import cs3500.pa04.json.Orientation;
 import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ShipTest {
-  ArrayList<Coord> coords;
-  Ship ship;
+  private ArrayList<Coord> coords;
+  private Ship ship;
 
   @BeforeEach
   public void setup() {
@@ -61,5 +63,36 @@ class ShipTest {
     this.coords.add(new Coord(1, 7));
     assertEquals(this.ship.type(), ShipType.CARRIER);
     this.coords.add(new Coord(1, 8));
+  }
+
+  @Test
+  public void testJsonThings() {
+    ArrayList<Coord> coords1 = new ArrayList<>();
+    coords1.add(new Coord(0, 0));
+    coords1.add(new Coord(1, 0));
+    Ship ship2 = new Ship(coords1);
+
+    assertEquals(ship2.direction(), Orientation.HORIZONTAL);
+    assertEquals(ship2.leastCoord(), new Coord(0,0));
+
+    ArrayList<Coord> coords2 = new ArrayList<>();
+    coords2.add(new Coord(0, 0));
+    coords2.add(new Coord(0, 1));
+    Ship ship3 = new Ship(coords2);
+
+    assertEquals(ship3.direction(), Orientation.VERTICAL);
+    assertEquals(ship3.leastCoord(), new Coord(0,0));
+
+    ArrayList<Coord> coords3 = new ArrayList<>();
+    coords3.add(new Coord(0, 0));
+    coords3.add(new Coord(1, 1));
+    Ship ship4 = new Ship(coords3);
+
+    assertThrows(IllegalStateException.class, ship4::direction);
+
+    assertEquals(new Ship(2, Orientation.VERTICAL, new Coord(0,0)),
+        ship3);
+
+    assertNotEquals(ship, 0);
   }
 }

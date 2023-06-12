@@ -132,4 +132,9 @@ public class Ship {
     return list.stream()
         .map(f).distinct().limit(2).count() <= 1;
   }
+
+  public boolean equals(Object that) {
+    return that instanceof Ship
+        && ((Ship) that).positions.equals(this.positions);
+  }
 }
