@@ -15,6 +15,9 @@ public class HumanPlayer extends AbstractPlayer {
 
   /**
    * Default constructor for now
+   *
+   * @param board the board this player will start off with
+   * @param ui the UI this player will use to interact with the player
    */
   public HumanPlayer(Board board, UiController ui) {
     super(board);
@@ -23,6 +26,8 @@ public class HumanPlayer extends AbstractPlayer {
 
   /**
    * Default constructor for now
+   *
+   * @param ui the UI this player will use to interact with the player
    */
   public HumanPlayer(UiController ui) {
     this.ui = ui;

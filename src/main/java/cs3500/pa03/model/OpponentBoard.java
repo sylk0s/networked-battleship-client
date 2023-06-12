@@ -54,6 +54,11 @@ public class OpponentBoard extends DisplayableBoard {
     }
   }
 
+  /**
+   * The number of remaining spaces on this board
+   *
+   * @return the remaining spaces
+   */
   public int remainingSpaces() {
     return this.height * this.width - this.shotsMissed.size() - this.shotsHit.size();
   }

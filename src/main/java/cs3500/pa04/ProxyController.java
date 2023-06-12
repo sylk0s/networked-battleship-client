@@ -45,6 +45,7 @@ public class ProxyController {
    *
    * @param server The socket this controller should connect to
    * @param player The local player
+   * @throws IOException for failing to get IO streams
    */
   public ProxyController(Socket server, Player player) throws IOException {
     this.server = server;

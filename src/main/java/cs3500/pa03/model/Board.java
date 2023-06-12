@@ -25,6 +25,7 @@ public class Board extends DisplayableBoard {
    * @param width the width
    * @param height the height
    * @param map the map of ship type to count
+   * @param random the random seed for board generation
    */
 
   public Board(int width, int height, Map<ShipType, Integer> map, Random random) {
@@ -32,9 +33,15 @@ public class Board extends DisplayableBoard {
     setup(map, random);
   }
 
+  /**
+   * Constructor which sets up a random board
+   *
+   * @param width the width of the board
+   * @param height the height of the board
+   * @param map the map of ships on the board
+   */
   public Board(int width, int height, Map<ShipType, Integer> map) {
-    this(width, height, new ArrayList<>());
-    setup(map, new Random());
+    this(width, height, map, new Random());
   }
 
   /**
@@ -76,6 +83,7 @@ public class Board extends DisplayableBoard {
    * Sets up the ships on this board
    *
    * @param specifications the map of ShipType to integer
+   * @param random the random this board uses to generate ships
    */
   public void setup(Map<ShipType, Integer> specifications, Random random) {
     // for each ship type

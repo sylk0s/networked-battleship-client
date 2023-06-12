@@ -18,15 +18,36 @@ import java.util.Random;
  * Represents a game of battleship
  */
 public class HumanVsAiGame implements Game {
+  /**
+   * The human playing this game
+   */
   private final AbstractPlayer human;
+
+  /**
+   * The AI player playing this game
+   */
   private final AbstractPlayer ai;
 
+  /**
+   * The UI that will be used for this game
+   */
   private final UiController ui;
+
+  /**
+   * The coordinates of the human's ships
+   */
   private final List<Coord> humanShipCoords;
+
+  /**
+   * The coordinates of the AI's ships
+   */
   private final List<Coord> aiShipCoords;
 
   /**
    * Create a new game with a Human vs an AI
+   *
+   * @param ui the UI that will be used
+   * @param random the Random object to use in this game
    */
   public HumanVsAiGame(Ui ui, Random random) {
     this.ui = new UiController(ui);

@@ -13,10 +13,21 @@ import java.util.stream.Collectors;
  * A Controller for the Ui
  */
 public class UiController {
+  /**
+   * The list of guesses so far
+   */
   private final ArrayList<Coord> guesses = new ArrayList<>();
 
+  /**
+   * The UI this controller controls
+   */
   private final Ui ui;
 
+  /**
+   * constructor
+   *
+   * @param ui the UI this controller controls
+   */
   public UiController(Ui ui) {
     this.ui = ui;
   }
@@ -56,6 +67,12 @@ public class UiController {
     }
   }
 
+  /**
+   * Confirm that the board size if valid
+   *
+   * @param size the size
+   * @return if it is valid
+   */
   private boolean validateSize(Coord size) {
     return !size.outOfBound(new Coord(6, 6), new Coord(16, 16));
   }
@@ -101,6 +118,13 @@ public class UiController {
     }
   }
 
+  /**
+   * Confirms if a ship map is valid
+   *
+   * @param map the ship map
+   * @param count the number of total ships
+   * @return if the map is valid
+   */
   private boolean validateShips(Map<ShipType, Integer> map, int count) {
     return map.values().stream().reduce(0, Integer::sum) == count
         && map.values().stream().noneMatch((x) -> x == 0);
@@ -151,6 +175,15 @@ public class UiController {
     }
   }
 
+  /**
+   * determine if a volley is valid
+   *
+   * @param shots the shots in the volley
+   * @param n the number of shots that should be in the volley
+   * @param width the width of the board
+   * @param height the height of the board
+   * @return if a volley is valid
+   */
   private boolean validateShots(ArrayList<Coord> shots, int n, int width, int height) {
     boolean result = shots.size() == n && shots.stream()
         .noneMatch((s) ->
@@ -163,6 +196,13 @@ public class UiController {
     return result;
   }
 
+  /**
+   * check if all values are unique in a list
+   *
+   * @param list the list
+   * @return if all elements are unique
+   * @param <T> the type of elements in this list
+   */
   private <T> boolean allAreUnique(ArrayList<T> list) {
     for (T item : list) {
       if (list.stream().filter((element) -> element.equals(item))
@@ -173,6 +213,11 @@ public class UiController {
     return true;
   }
 
+  /**
+   * displays the ending message
+   *
+   * @param msg the message to display
+   */
   public void displayEndMessage(String msg) {
     this.ui.displayEndMessage(msg);
   }

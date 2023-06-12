@@ -15,12 +15,17 @@ public class StupidAiPlayer extends AbstractPlayer {
    * The possible list of random shots for the player
    */
   private List<Coord> possibleShots;
+
+  /**
+   * The random seed used by this AI
+   */
   private final Random random;
 
   /**
    * Constructor
    *
    * @param board The board this player will use
+   * @param random the random object used
    */
   public StupidAiPlayer(Board board, Random random) {
     super(board);
@@ -28,15 +33,28 @@ public class StupidAiPlayer extends AbstractPlayer {
     this.random = random;
   }
 
+  /**
+   * constructor
+   *
+   * @param board the board used by this player
+   */
   public StupidAiPlayer(Board board) {
     this(board, new Random());
   }
 
+  /**
+   * constructor
+   *
+   * @param random the random object used by this AI
+   */
   public StupidAiPlayer(Random random) {
     super();
     this.random = random;
   }
 
+  /**
+   * constructor
+   */
   public StupidAiPlayer() {
     this(new Random());
   }

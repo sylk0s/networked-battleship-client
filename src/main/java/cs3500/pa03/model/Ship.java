@@ -109,6 +109,7 @@ public class Ship {
 
   /**
    * Get the length of this ship
+   * @return the length of this ship
    */
   @JsonGetter("length")
   public int length() {
@@ -148,16 +149,36 @@ public class Ship {
     };
   }
 
+  /**
+   * Checks how many unique mapped values there are
+   *
+   * @param list the original list
+   * @param f the function to map
+   * @return if the mapped values are the same
+   * @param <T> the output type
+   * @param <U> the input list type
+   */
   private <T, U> boolean mapSame(List<U> list, Function<U, T> f) {
     return list.stream()
         .map(f).distinct().limit(2).count() <= 1;
   }
 
+  /**
+   * Determine if two ships are equal
+   *
+   * @param that the other ship
+   * @return true if the two ships are equal
+   */
   public boolean equals(Object that) {
     return that instanceof Ship
         && ((Ship) that).positions.equals(this.positions);
   }
 
+  /**
+   * Get all the coords in this ship
+   *
+   * @return the list of all coords in this ship
+   */
   public List<Coord> coords() {
     return this.positions;
   }

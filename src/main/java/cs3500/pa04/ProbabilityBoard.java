@@ -36,6 +36,10 @@ public class ProbabilityBoard extends DisplayableBoard {
 
   /**
    * constructor
+   *
+   * @param width the width of the board
+   * @param height the height of the board
+   * @param map the map of ship types to their counts
    */
   public ProbabilityBoard(int width, int height, Map<ShipType, Integer> map) {
     super(width, height);

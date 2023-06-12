@@ -14,6 +14,7 @@ public interface Ui {
   /**
    * Get the size of the board
    *
+   * @param msg the message to display
    * @return A Coord where the X is the width, and Y is the height
    * @throws IOException Failing to print output to the output stream
    */
@@ -22,6 +23,7 @@ public interface Ui {
   /**
    * Get the numbers of each ship type
    *
+   * @param msg the message to display
    * @return A map of the ShipType to the number of that ship
    * @throws IOException Failing to print output to the output stream
    */
@@ -39,6 +41,7 @@ public interface Ui {
    * Gets the shots this user will fire
    *
    * @param n The number of shots
+   * @param msg the message to display
    * @return The list of coordinates the player chose to fire at
    * @throws IOException Failing to print output to the output stream
    */

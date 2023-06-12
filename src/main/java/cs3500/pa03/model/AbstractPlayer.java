@@ -22,12 +22,17 @@ public abstract class AbstractPlayer implements Player {
 
   /**
    * Constructor
+   *
+   * @param board the board to instantiate this player with
    */
   protected AbstractPlayer(Board board) {
     this.board = board;
     this.shotBoard = new OpponentBoard();
   }
 
+  /**
+   * Default Constructor
+   */
   protected AbstractPlayer() {
     this.shotBoard = new OpponentBoard();
   }
@@ -38,6 +43,7 @@ public abstract class AbstractPlayer implements Player {
    *
    * @param height         the height of the board, range: [6, 15] inclusive
    * @param width          the width of the board, range: [6, 15] inclusive
+   * @param map            the map of ship types to integers
    * @return the placements of each ship on the board
    */
   @Override
@@ -53,6 +59,8 @@ public abstract class AbstractPlayer implements Player {
    *
    * @param height         the height of the board, range: [6, 15] inclusive
    * @param width          the width of the board, range: [6, 15] inclusive
+   * @param map            the map of ship types to integers
+   * @param random         the random seed for the board generation
    * @return the placements of each ship on the board
    */
   public List<Ship> setup(int width, int height, Map<ShipType, Integer> map, Random random) {
