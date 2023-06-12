@@ -109,6 +109,7 @@ public class Ship {
 
   /**
    * Get the length of this ship
+   *
    * @return the length of this ship
    */
   @JsonGetter("length")
@@ -154,9 +155,9 @@ public class Ship {
    *
    * @param list the original list
    * @param f the function to map
-   * @return if the mapped values are the same
    * @param <T> the output type
    * @param <U> the input list type
+   * @return if the mapped values are the same
    */
   private <T, U> boolean mapSame(List<U> list, Function<U, T> f) {
     return list.stream()

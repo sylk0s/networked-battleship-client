@@ -200,8 +200,8 @@ public class UiController {
    * check if all values are unique in a list
    *
    * @param list the list
-   * @return if all elements are unique
    * @param <T> the type of elements in this list
+   * @return if all elements are unique
    */
   private <T> boolean allAreUnique(ArrayList<T> list) {
     for (T item : list) {
