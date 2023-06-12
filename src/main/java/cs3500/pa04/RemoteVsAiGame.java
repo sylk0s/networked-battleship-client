@@ -1,7 +1,6 @@
 package cs3500.pa04;
 
 import cs3500.pa03.controller.Game;
-import cs3500.pa03.model.Player;
 import cs3500.pa03.view.Cli;
 import cs3500.pa03.view.Ui;
 import java.io.IOException;
